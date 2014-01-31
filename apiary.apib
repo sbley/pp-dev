@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: http://pp-dev.saxsys.de
 
 # Poolpatz API
-Poolpatz API is a *short texts saving* service similar to its physical paper presence on your table.
+Poolpatz API ist ein Dienst für...
 
 ## Authentifizierung
 Poolplatz API benötigt den User-Agent xyz. Authentifizierung über HTTP Basic.
@@ -44,11 +44,11 @@ Ein Standort hat die folgenden Attribute:
 + Parameters
     + locationId (required, number, `1`) ... ID des Standortes der geladen werden soll.
 
-+ Model (application/json)
+### Standort abfragen [GET]
+Liefert den Standort für die übergebene `locationId` zurück.
++ Response 200 (application/json)
 
-    + Body
-    
-            {
+        {
                 "self": "v1/locations/1",
                 "name": "FFP",
                 "street": "Fritz-Foerster-Platz 2",
@@ -64,14 +64,12 @@ Ein Standort hat die folgenden Attribute:
                 }
             }
 
-### Standort abfragen [GET]
-Liefert den Standort für die übergebene `locationId` zurück.
-+ Response 200 (application/json)
-
-            [Standort][]
-
 ## Standorte [/v1/locations]
-+ Model (application/json)
+
+
+### Standortliste abfragen [GET]
+Liefert die Liste der Standorte zurück.
++ Response 200 (application/json)
 
         {
             "self": "v1/locations",
@@ -123,21 +121,19 @@ Liefert den Standort für die übergebene `locationId` zurück.
                 }
             }]
         }
-        
-### Standortliste abfragen [GET]
-Liefert die Liste der Standorte zurück.
-+ Response 200 (application/json)
-
-        [Standorte][]
 
 # Group Raeume
+Ein Raum hat die folgenden Attribute:
+- number
+- location
+- desks
 
 ## Raeume eines Standorts [/v1/locations/{locationId}/rooms]
 + Parameters
     + locationId (required, number, `1`) ... ID des Standortes der geladen werden soll.
 
 ### Räume eines Standorts abfragen [GET]  
-Liefert alle Räume für den Standort zurück, der zur übergebene locationId passt.
+Liefert alle Räume für den Standort zurück, der zur übergebene `locationId` passt.
 + Response 200 (application/json)
 
         {
@@ -173,6 +169,7 @@ Liefert alle Räume für den Standort zurück, der zur übergebene locationId pa
 + Parameters
     + roomId (required, number, `2`) ... ID des Raums der geladen werden soll.
  
+
 ### Raum abfragen [GET]  
 Liefert den Raum für die übergebene `roomId` zurück.
 + Response 200 (application/json)
@@ -189,6 +186,12 @@ Liefert den Raum für die übergebene `roomId` zurück.
                 "self": "v1/rooms/2/desks"
             }
         }
+
+# Group Plaetze
+Ein Platz hat die folgenden Attribute:
+- number
+- location
+- desks
 
 ## Plaetze eines Raums [/v1/rooms/{roomId}/desks]
 
@@ -232,4 +235,29 @@ Liefert alle Plätze des Raums, der zur übergebenen `roomId` passt.
                     "self": "v1/reservations?deskId=5"
                 }
             }]
+        }
+        
+## Platz [/v1/desk/{deskId}]
++ Parameters
+    + deskId (required, number, `2`) ... ID des Platzes der geladen werden soll.
+ 
+
+### Platz abfragen [GET]
+Liefert den Platz für die übergebene `deskId` zurück.
++ Response 200 (application/json)
+
+        {
+            "self": "v1/desks/4",
+            "number": "2",
+            "room":
+            {
+                "self": "v1/rooms/2"
+            },
+            "phoneNumber": "0351/49701-684",
+            "network": "intern",
+            "project": "Daimler",
+            "reservations":
+            {
+                "self": "v1/reservations?deskId=4"
+            }
         }
