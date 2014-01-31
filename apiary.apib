@@ -31,6 +31,13 @@ Liefert das Home-Objekt zurück. Das Home-Objekt ist die Einstiegsressource der 
         }
         
 # Group Standorte
+Ein Standort hat die folgenden Attribute:
+- name
+- street
+- zip
+- city
+- rooms
+- availableDesks
 
 ## Standort [/v1/locations/{locationId}]
 
@@ -39,27 +46,29 @@ Liefert das Home-Objekt zurück. Das Home-Objekt ist die Einstiegsressource der 
 
 + Model (application/json)
 
-        {
-            "self": "v1/locations/1",
-            "name": "FFP",
-            "street": "Fritz-Foerster-Platz 2",
-            "zip": "01069",
-            "city": "Dresden",
-            "rooms":
+    + Body
+    
             {
-                "self": "v1/locations/1/rooms"
-            },
-            "availableDesks":
-            {
-                "self" :"v1/locations/1/desks/available"
+                "self": "v1/locations/1",
+                "name": "FFP",
+                "street": "Fritz-Foerster-Platz 2",
+                "zip": "01069",
+                "city": "Dresden",
+                "rooms":
+                {
+                    "self": "v1/locations/1/rooms"
+                },
+                "availableDesks":
+                {
+                    "self" :"v1/locations/1/desks/available"
+                }
             }
-        }
 
 ### Standort abfragen [GET]
 Liefert den Standort für die übergebene `locationId` zurück.
-+ Response 200
++ Response 200 (application/json)
 
-        [Standorte][]
+            [Standort][]
 
 ## Standorte [/v1/locations]
 + Model (application/json)
