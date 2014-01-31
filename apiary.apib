@@ -49,7 +49,7 @@ Liefert den Standort für die übergebene `locationId` zurück.
 + Response 200 (application/json)
 
         {
-                "self": "v1/locations/{locationId}",
+                "self": "v1/locations/1",
                 "name": "FFP",
                 "street": "Fritz-Foerster-Platz 2",
                 "zip": "01069",
@@ -261,3 +261,29 @@ Liefert den Platz für die übergebene `deskId` zurück.
                 "self": "v1/reservations?deskId=4"
             }
         }
+
+## verfuegbare Plaetze eines Standorts [/v1/locations/{locationId}/desks/available]
++ Parameters
+    + locationId (required, number, `1`) ... ID des Standorts dessen verfügbaren Plätze geladen werden sollen.
+    
+
+### Platz abfragen [GET]
+Liefert den Platz für die übergebene `deskId` zurück.
++ Response 200 (application/json)
+
+        {
+            "self": "v1/desks/4",
+            "number": "2",
+            "room":
+            {
+                "self": "v1/rooms/2"
+            },
+            "phoneNumber": "0351/49701-684",
+            "network": "intern",
+            "project": "Daimler",
+            "reservations":
+            {
+                "self": "v1/reservations?deskId=4"
+            }
+        }
+
